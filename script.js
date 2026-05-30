@@ -113,7 +113,7 @@
 
     showStatus(
       'Thanks, ' + name.split(' ')[0] + '! Your enquiry has been recorded. ' +
-      'Your email app should open so you can send it to us — or call 01234 567 890.',
+      'Your email app should open so you can send it to us — or call 01268 949 100.',
       'success'
     );
 

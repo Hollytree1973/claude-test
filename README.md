@@ -31,7 +31,7 @@ python3 -m http.server 8000
 
 ## Customising
 
-- **Contact details / phone:** search for `01234 567 890` and `andrew@gibsons-surveyors.ltd`.
+- **Contact details / phone:** search for `01268 949 100` and `andrew@gibsons-surveyors.ltd`.
 - **Services & prices:** edit the `#services` section in `index.html`.
 - **Colours & fonts:** adjust the CSS custom properties under `:root` in `styles.css`.
 
