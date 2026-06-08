@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!-- HLG Veterinary Physiotherapy — self-contained single-file preview.
+     Styling and logo are baked in, so this works offline / on any phone.
+     The full multi-file site lives in index.html / styles.css / script.js. -->
+
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HLG Veterinary Physiotherapy | Mobile Canine &amp; Equine Physio in Essex</title>
+  <meta name="description" content="HLG Veterinary Physiotherapy — Masters qualified, RAMP registered mobile veterinary physiotherapist providing evidence-based, compassionate care for dogs and horses across Essex. Canine &amp; equine physiotherapy and Emmi-Pet ultrasound dog teeth cleaning." />
+  <meta name="theme-color" content="#1b4332" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%20240%22%20role%3D%22img%22%20aria-label%3D%22HLG%20Veterinary%20Physiotherapy%20emblem%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22shoe%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232b2b2b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230e0e0e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22wolf%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c1372b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237d1d16%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3C%21--%20Horseshoe%20%28equine%29%20--%3E%0A%20%20%3Cpath%20d%3D%22M120%2024%0A%20%20%20%20%20%20%20%20%20%20%20C%2070%2024%2040%2062%2040%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2040%20156%2064%20190%2096%20206%0A%20%20%20%20%20%20%20%20%20%20%20L%20108%20184%0A%20%20%20%20%20%20%20%20%20%20%20C%2084%20172%2066%20146%2066%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2066%2076%2088%2050%20120%2050%0A%20%20%20%20%20%20%20%20%20%20%20C%20152%2050%20174%2076%20174%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20174%20146%20156%20172%20132%20184%0A%20%20%20%20%20%20%20%20%20%20%20L%20144%20206%0A%20%20%20%20%20%20%20%20%20%20%20C%20176%20190%20200%20156%20200%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20200%2062%20170%2024%20120%2024%20Z%22%0A%20%20%20%20%20%20%20%20fill%3D%22url%28%23shoe%29%22/%3E%0A%20%20%3C%21--%20Horseshoe%20nail%20holes%20--%3E%0A%20%20%3Cg%20fill%3D%22%23c1372b%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2274%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2270%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2280%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22166%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22170%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20head%20%28canine%29%20inside%20the%20shoe%20--%3E%0A%20%20%3Cg%20fill%3D%22url%28%23wolf%29%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%2078%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20100%2092%20L%2092%2084%20L%2092%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2084%20110%2082%20122%2088%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2094%20148%20106%20156%20120%20158%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20134%20156%20146%20148%20152%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20158%20122%20156%20110%20148%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20148%2084%20L%20140%2092%20Z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20face%20details%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M108%20112%20l8%204%20-8%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M132%20112%20l-8%204%208%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%20132%20l7%206%20-7%206%20-7%20-6%20z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Paw%20print%20accent%20%28canine%29%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%20transform%3D%22translate%28120%20200%29%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%220%22%20cy%3D%226%22%20rx%3D%229%22%20ry%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-9%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-3%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%223%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E%0A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+/* ===== HLG Veterinary Physiotherapy — stylesheet ===== */
+:root {
+  --green-900: #14342a;
+  --green-700: #1b4332;
+  --green-600: #2d6a4f;
+  --green-400: #52b788;
+  --amber-500: #e08a2b;
+  --amber-400: #f0a648;
+  --red-600: #b9362b;
+  --ink: #1d2421;
+  --muted: #5d6b64;
+  --paper: #f7f9f6;
+  --paper-2: #eef3ed;
+  --white: #ffffff;
+  --line: #dde6df;
+  --shadow-sm: 0 2px 10px rgba(20, 52, 42, 0.06);
+  --shadow-md: 0 12px 30px rgba(20, 52, 42, 0.10);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --max: 1140px;
+  --font-head: "Poppins", system-ui, sans-serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--green-600); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; color: var(--green-900); margin: 0 0 .5em; }
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+
+.container { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: 22px; }
+
+.section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0; background: var(--green-700); color: #fff;
+  padding: 10px 16px; border-radius: 0 0 8px 0; z-index: 200;
+}
+.skip-link:focus { left: 0; }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--font-head); font-weight: 600; font-size: 1rem;
+  padding: .85rem 1.6rem; border-radius: 999px; border: 2px solid transparent;
+  cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  text-decoration: none;
+}
+.btn:hover { text-decoration: none; transform: translateY(-2px); }
+.btn-primary { background: var(--amber-500); color: #2a1a05; box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--amber-400); box-shadow: var(--shadow-md); }
+.btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,.6); }
+.btn-ghost:hover { background: rgba(255,255,255,.12); }
+.btn-block { width: 100%; }
+
+/* ===== Header ===== */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247, 249, 246, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+.brand { display: flex; align-items: center; gap: .65rem; }
+.brand:hover { text-decoration: none; }
+.brand-mark { width: 46px; height: 46px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+.brand-name { font-family: var(--font-head); font-weight: 800; font-size: 1.35rem; color: var(--green-900); letter-spacing: .02em; }
+.brand-sub { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--amber-500); font-weight: 600; }
+
+.primary-nav { display: flex; align-items: center; gap: .35rem; }
+.primary-nav a {
+  font-family: var(--font-head); font-weight: 500; color: var(--ink);
+  padding: .5rem .8rem; border-radius: 999px; font-size: .98rem;
+}
+.primary-nav a:hover { background: var(--paper-2); text-decoration: none; }
+.primary-nav .nav-cta { background: var(--green-700); color: #fff; margin-left: .4rem; }
+.primary-nav .nav-cta:hover { background: var(--green-600); }
+
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px; width: 44px; height: 44px;
+  background: none; border: none; cursor: pointer; padding: 10px;
+}
+.nav-toggle span { height: 2.5px; width: 100%; background: var(--green-900); border-radius: 2px; transition: .25s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ===== Hero ===== */
+.hero {
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(82,183,136,.18), transparent 60%),
+    linear-gradient(160deg, var(--green-900), var(--green-700) 60%, var(--green-600));
+  color: #eaf3ee; position: relative; overflow: hidden;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem; align-items: center;
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+.eyebrow {
+  text-transform: uppercase; letter-spacing: .18em; font-size: .8rem; font-weight: 600;
+  color: var(--amber-400); margin: 0 0 1rem;
+}
+.hero h1 { color: #fff; max-width: 16ch; }
+.hero .lead { font-size: 1.12rem; color: #d6e6dd; max-width: 52ch; margin: 0 0 1.8rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 1.8rem; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; padding: 0; margin: 0; }
+.hero-badges li {
+  font-family: var(--font-head); font-size: .82rem; font-weight: 600; letter-spacing: .02em;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22);
+  padding: .4rem .9rem; border-radius: 999px;
+}
+.hero-emblem { display: flex; justify-content: center; }
+.hero-emblem img {
+  width: min(340px, 80%); filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));
+  animation: floaty 6s ease-in-out infinite;
+}
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+/* ===== Trust strip ===== */
+.trust-strip { background: var(--green-900); color: #cfe3d8; }
+.trust-inner {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.5rem;
+  padding: 1rem 22px; font-family: var(--font-head); font-weight: 500; font-size: .95rem;
+}
+
+/* ===== Section heads ===== */
+.section-eyebrow {
+  text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 700;
+  color: var(--amber-500); margin: 0 0 .5rem;
+}
+.section-head { text-align: center; max-width: 720px; margin: 0 auto 2.8rem; }
+.section-intro { color: var(--muted); font-size: 1.08rem; }
+
+/* ===== About ===== */
+.about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.about-card {
+  background: linear-gradient(160deg, var(--green-700), var(--green-600));
+  color: #fff; border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow-md);
+  display: flex; flex-direction: column; gap: .25rem;
+}
+.about-card-name { font-family: var(--font-head); font-weight: 800; font-size: 1.7rem; }
+.about-card-role { color: var(--amber-400); font-weight: 600; letter-spacing: .04em; margin-bottom: 1rem; }
+.about-card-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.about-card-list li { position: relative; padding-left: 1.6rem; }
+.about-card-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green-400); font-weight: 700; }
+.about-tagline { color: var(--green-600); font-family: var(--font-head); font-weight: 600; font-size: 1.15rem; font-style: italic; }
+
+/* ===== Services / cards ===== */
+.services { background: var(--paper); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.card {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 2rem 1.8rem; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.card-feature { border-color: var(--amber-400); box-shadow: 0 12px 30px rgba(224,138,43,.14); }
+.card-icon {
+  width: 58px; height: 58px; display: grid; place-items: center; font-size: 1.7rem;
+  background: var(--paper-2); border-radius: 14px; margin-bottom: 1rem;
+}
+.card-feature .card-icon { background: #fbe9d3; }
+.card p { color: var(--muted); }
+.card-points { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .5rem; }
+.card-points li { position: relative; padding-left: 1.5rem; font-size: .96rem; }
+.card-points li::before { content: "→"; position: absolute; left: 0; color: var(--amber-500); font-weight: 700; }
+
+/* ===== Pricing ===== */
+.pricing { background: var(--white); }
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.price-card {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem; background: var(--paper);
+}
+.price-card h3 { display: flex; align-items: center; gap: .5rem; border-bottom: 2px solid var(--line); padding-bottom: .8rem; }
+.price-list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 1rem; }
+.price-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.price-list em { color: var(--muted); font-style: normal; font-size: .85rem; display: block; }
+.price { font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; color: var(--green-700); white-space: nowrap; }
+
+/* ===== Included ===== */
+.included { background: var(--paper-2); }
+.included-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; }
+.included-col { background: var(--white); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow-sm); }
+.included-col h3 { color: var(--green-700); border-bottom: 2px solid var(--paper-2); padding-bottom: .7rem; margin-bottom: 1rem; }
+.check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .65rem; }
+.check-list li { position: relative; padding-left: 1.9rem; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 1px; width: 1.3rem; height: 1.3rem;
+  background: var(--green-400); color: #fff; border-radius: 50%; display: grid; place-items: center;
+  font-size: .8rem; font-weight: 700;
+}
+
+/* ===== Rewards ===== */
+.rewards { background: var(--white); }
+.reward-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.reward-card {
+  border-radius: var(--radius); padding: 2rem; border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--paper), var(--white));
+}
+.reward-card h3 { color: var(--amber-500); }
+.reward-card p { color: var(--muted); margin: 0; }
+.reward-note { text-align: center; margin-top: 1.8rem; font-family: var(--font-head); font-weight: 500; color: var(--green-700); }
+
+/* ===== Travel ===== */
+.travel { background: linear-gradient(160deg, var(--green-900), var(--green-700)); color: #e7f1ea; }
+.travel h2 { color: #fff; }
+.travel-grid { display: grid; grid-template-columns: .9fr 1.4fr; gap: clamp(1.5rem,4vw,3rem); align-items: center; }
+.travel-copy p { color: #cfe1d7; }
+.travel-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.travel-card {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--radius-sm); padding: 1.4rem;
+}
+.travel-card h3 { color: #fff; font-size: 1.05rem; }
+.travel-card p { color: #cfe1d7; font-size: .92rem; margin: 0; }
+.travel-tag {
+  display: inline-block; font-family: var(--font-head); font-weight: 700; font-size: .8rem;
+  background: rgba(255,255,255,.14); padding: .25rem .7rem; border-radius: 999px; margin-bottom: .8rem;
+}
+.travel-tag.free { background: var(--amber-500); color: #2a1a05; }
+
+/* ===== Contact ===== */
+.contact { background: var(--paper); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem,4vw,3.5rem); align-items: start; }
+.contact-list { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: .9rem; }
+.contact-list li { display: flex; align-items: center; gap: .8rem; font-size: 1.05rem; }
+.contact-ico {
+  width: 40px; height: 40px; display: grid; place-items: center; background: var(--white);
+  border: 1px solid var(--line); border-radius: 12px; flex-shrink: 0;
+}
+.socials { display: flex; flex-direction: column; gap: .5rem; margin-top: .5rem; }
+.socials a { font-weight: 500; }
+
+.contact-form { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow-sm); }
+.field { margin-bottom: 1.1rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field label { display: block; font-family: var(--font-head); font-weight: 500; font-size: .9rem; margin-bottom: .4rem; color: var(--ink); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: .75rem .9rem; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 1rem; background: var(--paper); color: var(--ink);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--green-400); box-shadow: 0 0 0 3px rgba(82,183,136,.2); background: #fff;
+}
+.field textarea { resize: vertical; }
+.form-note { text-align: center; font-size: .9rem; color: var(--muted); margin: 1rem 0 0; }
+
+/* ===== Footer ===== */
+.site-footer { background: var(--green-900); color: #c7dacf; }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 2.5rem 22px; }
+.footer-brand { display: flex; align-items: center; gap: .9rem; }
+.footer-brand strong { display: block; color: #fff; font-family: var(--font-head); }
+.footer-brand span { font-size: .9rem; }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.footer-nav a { color: #c7dacf; font-weight: 500; }
+.footer-nav a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); }
+.footer-bottom p { text-align: center; font-size: .85rem; padding: 1.2rem 0; margin: 0; color: #9fb8ab; }
+
+/* ===== Reveal animation ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ===== Responsive ===== */
+@media (max-width: 920px) {
+  .hero-inner, .about-grid, .travel-grid, .contact-grid { grid-template-columns: 1fr; }
+  .hero-emblem { order: -1; }
+  .hero-emblem img { width: 200px; }
+  .cards, .price-grid, .travel-cards { grid-template-columns: 1fr 1fr; }
+  .included-grid, .reward-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  .nav-toggle { display: flex; }
+  .primary-nav {
+    position: absolute; top: 72px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: .6rem 22px 1.1rem; box-shadow: var(--shadow-md);
+    transform: translateY(-12px); opacity: 0; pointer-events: none; transition: .22s ease;
+  }
+  .primary-nav.open { transform: none; opacity: 1; pointer-events: auto; }
+  .primary-nav a { padding: .85rem .4rem; border-bottom: 1px solid var(--line); }
+  .primary-nav .nav-cta { margin: .7rem 0 0; text-align: center; border-bottom: none; }
+  .cards, .price-grid, .travel-cards { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .trust-inner { gap: .6rem 1.4rem; font-size: .85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== Header / Nav ===== -->
+  <header class="site-header" id="top">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="HLG Veterinary Physiotherapy home">
+        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%20240%22%20role%3D%22img%22%20aria-label%3D%22HLG%20Veterinary%20Physiotherapy%20emblem%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22shoe%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232b2b2b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230e0e0e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22wolf%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c1372b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237d1d16%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3C%21--%20Horseshoe%20%28equine%29%20--%3E%0A%20%20%3Cpath%20d%3D%22M120%2024%0A%20%20%20%20%20%20%20%20%20%20%20C%2070%2024%2040%2062%2040%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2040%20156%2064%20190%2096%20206%0A%20%20%20%20%20%20%20%20%20%20%20L%20108%20184%0A%20%20%20%20%20%20%20%20%20%20%20C%2084%20172%2066%20146%2066%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2066%2076%2088%2050%20120%2050%0A%20%20%20%20%20%20%20%20%20%20%20C%20152%2050%20174%2076%20174%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20174%20146%20156%20172%20132%20184%0A%20%20%20%20%20%20%20%20%20%20%20L%20144%20206%0A%20%20%20%20%20%20%20%20%20%20%20C%20176%20190%20200%20156%20200%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20200%2062%20170%2024%20120%2024%20Z%22%0A%20%20%20%20%20%20%20%20fill%3D%22url%28%23shoe%29%22/%3E%0A%20%20%3C%21--%20Horseshoe%20nail%20holes%20--%3E%0A%20%20%3Cg%20fill%3D%22%23c1372b%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2274%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2270%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2280%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22166%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22170%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20head%20%28canine%29%20inside%20the%20shoe%20--%3E%0A%20%20%3Cg%20fill%3D%22url%28%23wolf%29%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%2078%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20100%2092%20L%2092%2084%20L%2092%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2084%20110%2082%20122%2088%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2094%20148%20106%20156%20120%20158%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20134%20156%20146%20148%20152%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20158%20122%20156%20110%20148%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20148%2084%20L%20140%2092%20Z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20face%20details%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M108%20112%20l8%204%20-8%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M132%20112%20l-8%204%208%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%20132%20l7%206%20-7%206%20-7%20-6%20z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Paw%20print%20accent%20%28canine%29%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%20transform%3D%22translate%28120%20200%29%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%220%22%20cy%3D%226%22%20rx%3D%229%22%20ry%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-9%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-3%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%223%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E%0A" alt="" class="brand-mark" width="48" height="48" />
+        <span class="brand-text">
+          <span class="brand-name">HLG</span>
+          <span class="brand-sub">Veterinary Physiotherapy</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#travel">Travel</a>
+        <a class="nav-cta" href="#contact">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Mobile &middot; Dogs &amp; Horses &middot; Essex</p>
+          <h1>Gold-standard physiotherapy for the animals you love</h1>
+          <p class="lead">
+            Hi, I'm Holly &mdash; a Masters qualified, RAMP registered veterinary physiotherapist.
+            I provide evidence-based, compassionate care to reduce pain, restore movement and
+            optimise performance, treating every animal as an individual.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Book an Assessment</a>
+            <a class="btn btn-ghost" href="#services">View Services</a>
+          </div>
+          <ul class="hero-badges">
+            <li>Masters Qualified</li>
+            <li>RAMP Registered</li>
+            <li>Mobile Service</li>
+          </ul>
+        </div>
+        <div class="hero-emblem" aria-hidden="true">
+          <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%20240%22%20role%3D%22img%22%20aria-label%3D%22HLG%20Veterinary%20Physiotherapy%20emblem%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22shoe%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232b2b2b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230e0e0e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22wolf%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c1372b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237d1d16%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3C%21--%20Horseshoe%20%28equine%29%20--%3E%0A%20%20%3Cpath%20d%3D%22M120%2024%0A%20%20%20%20%20%20%20%20%20%20%20C%2070%2024%2040%2062%2040%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2040%20156%2064%20190%2096%20206%0A%20%20%20%20%20%20%20%20%20%20%20L%20108%20184%0A%20%20%20%20%20%20%20%20%20%20%20C%2084%20172%2066%20146%2066%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2066%2076%2088%2050%20120%2050%0A%20%20%20%20%20%20%20%20%20%20%20C%20152%2050%20174%2076%20174%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20174%20146%20156%20172%20132%20184%0A%20%20%20%20%20%20%20%20%20%20%20L%20144%20206%0A%20%20%20%20%20%20%20%20%20%20%20C%20176%20190%20200%20156%20200%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20200%2062%20170%2024%20120%2024%20Z%22%0A%20%20%20%20%20%20%20%20fill%3D%22url%28%23shoe%29%22/%3E%0A%20%20%3C%21--%20Horseshoe%20nail%20holes%20--%3E%0A%20%20%3Cg%20fill%3D%22%23c1372b%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2274%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2270%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2280%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22166%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22170%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20head%20%28canine%29%20inside%20the%20shoe%20--%3E%0A%20%20%3Cg%20fill%3D%22url%28%23wolf%29%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%2078%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20100%2092%20L%2092%2084%20L%2092%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2084%20110%2082%20122%2088%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2094%20148%20106%20156%20120%20158%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20134%20156%20146%20148%20152%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20158%20122%20156%20110%20148%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20148%2084%20L%20140%2092%20Z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20face%20details%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M108%20112%20l8%204%20-8%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M132%20112%20l-8%204%208%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%20132%20l7%206%20-7%206%20-7%20-6%20z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Paw%20print%20accent%20%28canine%29%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%20transform%3D%22translate%28120%20200%29%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%220%22%20cy%3D%226%22%20rx%3D%229%22%20ry%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-9%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-3%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%223%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E%0A" alt="" width="320" height="320" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Trust strip ===== -->
+    <section class="trust-strip">
+      <div class="container trust-inner">
+        <span>🐾 Canine Physiotherapy</span>
+        <span>🐴 Equine Physiotherapy</span>
+        <span>🦷 Ultrasound Teeth Cleaning</span>
+        <span>📋 Written Reports Included</span>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="section about">
+      <div class="container about-grid">
+        <div class="about-media" aria-hidden="true">
+          <div class="about-card">
+            <span class="about-card-name">Holly Gibson</span>
+            <span class="about-card-role">IMSc Vet Physio</span>
+            <ul class="about-card-list">
+              <li>Masters Qualified</li>
+              <li>RAMP Registered</li>
+              <li>Emmi-Pet Certified</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-copy">
+          <p class="section-eyebrow">Why choose HLG</p>
+          <h2>Every animal treated as an individual</h2>
+          <p>
+            With a strong background in <strong>canine sports and sled-dog competition</strong>, I understand the
+            unique demands placed on working and performance animals &mdash; as well as the importance of
+            building trust with animals of all temperaments.
+          </p>
+          <p>
+            Whether it's a competition athlete, a recovering pet or a senior companion, I take pride in
+            tailoring every session with <strong>compassion, patience and evidence-based care</strong>, using a
+            combination of therapeutic massage, electrotherapies and individualised rehabilitation and
+            conditioning plans.
+          </p>
+          <p class="about-tagline">Helping your animals feel and perform at their best.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow">What I offer</p>
+          <h2>Our Services</h2>
+          <p class="section-intro">
+            Supporting post-operative rehabilitation, injury recovery &amp; prevention, mobility and
+            arthritis support, and performance optimisation.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🐾</div>
+            <h3>Canine Physiotherapy</h3>
+            <p>
+              Hands-on assessment and treatment for dogs of all ages and disciplines, from cherished
+              companions to competitive athletes &mdash; supporting mobility, recovery and comfort.
+            </p>
+            <ul class="card-points">
+              <li>Post-operative rehabilitation</li>
+              <li>Injury recovery &amp; prevention</li>
+              <li>Mobility &amp; arthritis support</li>
+              <li>Performance optimisation</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🐴</div>
+            <h3>Equine Physiotherapy</h3>
+            <p>
+              Tailored physiotherapy for horses to relieve pain, improve range of motion and keep your
+              horse moving freely, whether in work, recovery or retirement.
+            </p>
+            <ul class="card-points">
+              <li>Musculoskeletal assessment</li>
+              <li>Massage &amp; soft-tissue therapy</li>
+              <li>Rehabilitation &amp; conditioning</li>
+              <li>Performance &amp; soundness support</li>
+            </ul>
+          </article>
+
+          <article class="card card-feature">
+            <div class="card-icon">🦷</div>
+            <h3>Ultrasound Dog Teeth Cleaning</h3>
+            <p>
+              A gentle, completely silent and motionless Emmi-Pet treatment that removes plaque, tartar
+              and bacteria to support better oral health &mdash; <strong>no anaesthetic required</strong>.
+            </p>
+            <ul class="card-points">
+              <li>Up to 96 million ultrasonic vibrations / min</li>
+              <li>Reduces gingivitis &amp; tartar build-up</li>
+              <li>Fresher breath &amp; healthier gums</li>
+              <li>Emmi-Pet certified &amp; CPD accredited</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pricing ===== -->
+    <section id="pricing" class="section pricing">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow">Transparent pricing</p>
+          <h2>Services &amp; Prices</h2>
+          <p class="section-intro">Multi-dog or horse discounts available (minimum 3 animals) &mdash; please contact for info.</p>
+        </div>
+
+        <div class="price-grid">
+          <div class="price-card">
+            <h3><span aria-hidden="true">🐾</span> Canine Physiotherapy</h3>
+            <ul class="price-list">
+              <li><span>Initial Assessment &amp; Treatment <em>(up to 1.5 hrs)</em></span><span class="price">£65</span></li>
+              <li><span>Follow-Up Treatment <em>(1 hr)</em></span><span class="price">£60</span></li>
+            </ul>
+          </div>
+
+          <div class="price-card">
+            <h3><span aria-hidden="true">🐴</span> Equine Physiotherapy</h3>
+            <ul class="price-list">
+              <li><span>Initial Assessment &amp; Treatment <em>(up to 1.5 hrs)</em></span><span class="price">£70</span></li>
+              <li><span>Follow-Up Treatment <em>(1 hr)</em></span><span class="price">£65</span></li>
+            </ul>
+          </div>
+
+          <div class="price-card">
+            <h3><span aria-hidden="true">🦷</span> Ultrasound Teeth Cleaning</h3>
+            <ul class="price-list">
+              <li><span>Initial Treatment <em>(longer &amp; more thorough)</em></span><span class="price">£60</span></li>
+              <li><span>Follow-Up <em>(booked within 3 months)</em></span><span class="price">£45</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== What's Included ===== -->
+    <section class="section included">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow">Physiotherapy sessions</p>
+          <h2>What's Included</h2>
+        </div>
+        <div class="included-grid">
+          <div class="included-col">
+            <h3>Initial Assessment</h3>
+            <ul class="check-list">
+              <li>Full clinical history review</li>
+              <li>Static &amp; dynamic assessment</li>
+              <li>Musculoskeletal palpation + joint range of motion assessment</li>
+              <li>Massage therapy treatment</li>
+              <li>Electrotherapy treatment (if not contraindicated)</li>
+              <li>Tailored rehabilitation / conditioning plan</li>
+              <li>Aftercare and home management advice</li>
+              <li>Written report sent post-session</li>
+            </ul>
+          </div>
+          <div class="included-col">
+            <h3>Follow-Up</h3>
+            <ul class="check-list">
+              <li>Progress review</li>
+              <li>Reassessment of movement &amp; posture</li>
+              <li>Hands-on treatment</li>
+              <li>Exercise progression or adjustments</li>
+              <li>Ongoing support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Rewards ===== -->
+    <section id="rewards" class="section rewards">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow">Thank you for your loyalty</p>
+          <h2>Loyalty &amp; Referral Rewards</h2>
+        </div>
+        <div class="reward-grid">
+          <article class="reward-card">
+            <div class="card-icon">🎟️</div>
+            <h3>Loyalty Card</h3>
+            <p>Attend 5 full-priced sessions and receive <strong>50% off your next session</strong>. Ideal for long-term rehabilitation or regular maintenance.</p>
+          </article>
+          <article class="reward-card">
+            <div class="card-icon">🤝</div>
+            <h3>Referral Reward</h3>
+            <p>Recommend HLG Veterinary Physiotherapy and receive <strong>10% off your next session</strong> once your referral has had their first treatment.</p>
+          </article>
+        </div>
+        <p class="reward-note">Your loyalty &amp; word of mouth helps a small business grow. Thank you! 💚</p>
+      </div>
+    </section>
+
+    <!-- ===== Travel ===== -->
+    <section id="travel" class="section travel">
+      <div class="container travel-grid">
+        <div class="travel-copy">
+          <p class="section-eyebrow">Mobile service</p>
+          <h2>Travel &amp; Service Area</h2>
+          <p>
+            I come to you. Treating your animal in a familiar, low-stress environment helps me get
+            the most accurate assessment and keeps your companion comfortable throughout.
+          </p>
+        </div>
+        <div class="travel-cards">
+          <div class="travel-card">
+            <span class="travel-tag free">FREE</span>
+            <h3>Within 10 miles</h3>
+            <p>Free travel within a 10 mile radius of Basildon, Essex (SS16).</p>
+          </div>
+          <div class="travel-card">
+            <span class="travel-tag">50p / mile</span>
+            <h3>Beyond 10 miles</h3>
+            <p>Travel beyond 10 miles is charged at 50p per mile, round trip.</p>
+          </div>
+          <div class="travel-card">
+            <span class="travel-tag">Essex</span>
+            <h3>Primary service area</h3>
+            <p>Based in Essex. Appointments further afield are available by arrangement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="section contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <p class="section-eyebrow">Get in touch</p>
+          <h2>Book an appointment</h2>
+          <p>
+            Ready to help your dog or horse feel and perform at their best? Send a message or reach out
+            directly &mdash; I'd love to hear about your animal and how I can help.
+          </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-ico">📞</span>
+              <a href="tel:+447446911163">07446 911163</a>
+            </li>
+            <li>
+              <span class="contact-ico">✉️</span>
+              <a href="mailto:holly@gibsons.ltd.uk">holly@gibsons.ltd.uk</a>
+            </li>
+            <li>
+              <span class="contact-ico">📍</span>
+              <span>11 The Firle, Langdon Hills, Basildon, SS16 6NB</span>
+            </li>
+          </ul>
+          <div class="socials">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">📘 @HLG Veterinary Physiotherapy</a>
+            <a href="https://www.instagram.com/hlg_vet_physio/" target="_blank" rel="noopener noreferrer">📷 @hlg_vet_physio</a>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/holly@gibsons.ltd.uk" method="POST">
+          <input type="hidden" name="_subject" value="New enquiry from HLG website" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="service">I'm interested in</label>
+            <select id="service" name="service">
+              <option>Canine Physiotherapy</option>
+              <option>Equine Physiotherapy</option>
+              <option>Ultrasound Teeth Cleaning</option>
+              <option>Not sure yet — please advise</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Tell me about your animal</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>
+          <p class="form-note">Prefer to talk? Call or text <a href="tel:+447446911163">07446 911163</a>.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%20240%22%20role%3D%22img%22%20aria-label%3D%22HLG%20Veterinary%20Physiotherapy%20emblem%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22shoe%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232b2b2b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230e0e0e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22wolf%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23c1372b%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237d1d16%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3C%21--%20Horseshoe%20%28equine%29%20--%3E%0A%20%20%3Cpath%20d%3D%22M120%2024%0A%20%20%20%20%20%20%20%20%20%20%20C%2070%2024%2040%2062%2040%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2040%20156%2064%20190%2096%20206%0A%20%20%20%20%20%20%20%20%20%20%20L%20108%20184%0A%20%20%20%20%20%20%20%20%20%20%20C%2084%20172%2066%20146%2066%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%2066%2076%2088%2050%20120%2050%0A%20%20%20%20%20%20%20%20%20%20%20C%20152%2050%20174%2076%20174%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20174%20146%20156%20172%20132%20184%0A%20%20%20%20%20%20%20%20%20%20%20L%20144%20206%0A%20%20%20%20%20%20%20%20%20%20%20C%20176%20190%20200%20156%20200%20112%0A%20%20%20%20%20%20%20%20%20%20%20C%20200%2062%20170%2024%20120%2024%20Z%22%0A%20%20%20%20%20%20%20%20fill%3D%22url%28%23shoe%29%22/%3E%0A%20%20%3C%21--%20Horseshoe%20nail%20holes%20--%3E%0A%20%20%3Cg%20fill%3D%22%23c1372b%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2274%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2270%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2280%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22166%22%20cy%3D%2286%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22170%22%20cy%3D%22118%22%20r%3D%224.2%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22150%22%20r%3D%224.2%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20head%20%28canine%29%20inside%20the%20shoe%20--%3E%0A%20%20%3Cg%20fill%3D%22url%28%23wolf%29%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%2078%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20100%2092%20L%2092%2084%20L%2092%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2084%20110%2082%20122%2088%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%2094%20148%20106%20156%20120%20158%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20134%20156%20146%20148%20152%20134%0A%20%20%20%20%20%20%20%20%20%20%20%20%20C%20158%20122%20156%20110%20148%20102%0A%20%20%20%20%20%20%20%20%20%20%20%20%20L%20148%2084%20L%20140%2092%20Z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Wolf%20face%20details%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M108%20112%20l8%204%20-8%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M132%20112%20l-8%204%208%204%20z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M120%20132%20l7%206%20-7%206%20-7%20-6%20z%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3C%21--%20Paw%20print%20accent%20%28canine%29%20--%3E%0A%20%20%3Cg%20fill%3D%22%230e0e0e%22%20transform%3D%22translate%28120%20200%29%22%3E%0A%20%20%20%20%3Cellipse%20cx%3D%220%22%20cy%3D%226%22%20rx%3D%229%22%20ry%3D%227%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-9%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22-3%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%223%22%20cy%3D%22-8%22%20r%3D%223.4%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%22-4%22%20r%3D%223.4%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E%0A" alt="" width="44" height="44" />
+        <div>
+          <strong>HLG Veterinary Physiotherapy</strong>
+          <span>Evidence-based, compassionate care for dogs &amp; horses.</span>
+        </div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#travel">Travel</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; <span id="year"></span> HLG Veterinary Physiotherapy &middot; Holly Gibson, IMSc Vet Physio &middot; Basildon, Essex</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+// ===== HLG Veterinary Physiotherapy — interactions =====
+(function () {
+  "use strict";
+
+  // Mobile nav toggle
+  var toggle = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("primary-nav");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+
+    // Close the menu after tapping a link
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      });
+    });
+  }
+
+  // Current year in footer
+  var yearEl = document.getElementById("year");
+  if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
+  // Scroll reveal — tag the main content blocks
+  var revealTargets = document.querySelectorAll(
+    ".section-head, .card, .price-card, .included-col, .reward-card, .travel-card, .about-card, .about-copy, .hero-copy, .contact-form, .contact-copy"
+  );
+  revealTargets.forEach(function (el) { el.classList.add("reveal"); });
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    revealTargets.forEach(function (el) { io.observe(el); });
+  } else {
+    revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+})();
+
+</script>
+</body>
+</html>
