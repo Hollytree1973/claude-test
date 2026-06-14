@@ -1,0 +1,20 @@
+# Netlify configuration for the Gibsons Surveyors static site.
+# No build step is needed — the site is plain HTML/CSS/JS served from the repo root.
+
+[build]
+  publish = "."
+  command = ""
+
+# Send any unknown paths back to the single-page site.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Sensible security headers for a static marketing site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
