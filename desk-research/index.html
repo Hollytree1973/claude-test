@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gibsons Desk Research</title>
+<style>
+  :root{ --emerald:#0E9F6E; --emerald-d:#0F766E; --ink:#13241f; --muted:#5b6b66; --line:#dfe7e3; --amber:#F59E0B; --red:#b42318; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#f3f7f5;line-height:1.5}
+  header{background:var(--emerald-d);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:10px}
+  header h1{font-size:1.15rem;margin:0;font-weight:600}
+  header a{color:#d6f5e9;margin-left:auto;font-size:.9rem}
+  .wrap{max-width:820px;margin:0 auto;padding:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  label{display:block;font-weight:600;font-size:.9rem;margin:0 0 6px}
+  input,select{width:100%;font:inherit;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  input:focus,select:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(14,159,110,.15)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row .field{flex:1;min-width:160px;margin-bottom:12px}
+  button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:12px 18px;cursor:pointer}
+  .primary{background:var(--amber);color:#3a2a00}
+  .primary:hover{background:#e08e05}
+  .ghost{background:#eef4f1;color:var(--emerald-d);padding:8px 14px;font-size:.9rem}
+  .muted{color:var(--muted);font-size:.88rem}
+  .status{padding:12px 14px;border-radius:10px;margin-top:12px;font-size:.95rem}
+  .status.err{background:#fdecea;color:#a32419;border:1px solid #f3c2bd}
+  .status.warn{background:#fff7e6;color:#8a5b00;border:1px solid #f3d99b}
+  .status.ok{background:#e7f6ef;color:#0d6b46;border:1px solid #b9e3cd}
+  #results{display:none}
+  .flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .flag{font-size:.82rem;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#f6faf8}
+  .flag.red{background:#fdecea;color:var(--red);border-color:#f3c2bd}
+  .flag.amber{background:#fff7e6;color:#8a5b00;border-color:#f3d99b}
+  .flag.green{background:#e7f6ef;color:#0d6b46;border-color:#b9e3cd}
+  .section h2{font-size:1rem;margin:0 0 4px}
+  .section .head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .section .text{white-space:pre-wrap;background:#f6faf8;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:.93rem}
+  .section .text[contenteditable]:focus{outline:2px solid var(--emerald)}
+  table{width:100%;border-collapse:collapse;font-size:.88rem}
+  td,th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;width:38%}
+  .links a{display:inline-block;margin:0 14px 6px 0;color:var(--emerald-d);font-weight:600}
+  details summary{cursor:pointer;font-weight:600;color:var(--emerald-d)}
+  h3{font-size:.95rem;margin:16px 0 6px}
+  @media (max-width:520px){ .section .head{flex-direction:column} }
+</style>
+</head>
+<body>
+<header>
+  <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="7" fill="#10B981"/><circle cx="14" cy="14" r="6" stroke="#fff" stroke-width="2.4"/><path d="m18.5 18.5 5 5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+  <h1>Gibsons Desk Research</h1>
+  <a href="../epc-lookup/">EPC lookup</a>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="nameNo">Property number or name</label>
+        <input id="nameNo" placeholder="e.g. 45  or  Rose Cottage" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="postcode">Postcode</label>
+        <input id="postcode" placeholder="e.g. CM9 5HN" autocomplete="off" />
+      </div>
+    </div>
+    <button class="primary" id="go">Run desk research</button>
+    <div id="status"></div>
+    <div id="chooser" style="display:none;margin-top:14px">
+      <label for="matches">Several EPCs matched. Choose the right one:</label>
+      <select id="matches"></select>
+    </div>
+  </div>
+
+  <div id="results">
+    <div class="card">
+      <b id="addrLine"></b>
+      <div class="muted" id="areaLine"></div>
+      <div class="flags" id="flags"></div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="ghost" id="copyAll">Copy all report sections</button>
+        <span class="muted" style="align-self:center">Text boxes are editable before you copy.</span>
+      </div>
+    </div>
+
+    <div id="sections"></div>
+
+    <div class="card">
+      <h2 style="font-size:1rem;margin:0 0 6px">Radon</h2>
+      <p class="muted" style="margin:0 0 8px">There's no free radon lookup by address, so check the <a href="https://www.ukradon.org/information/ukmaps" target="_blank" rel="noopener">UKradon map</a> and pick the band. The report text updates itself.</p>
+      <select id="radon">
+        <option value="">Not checked yet</option>
+        <option value="1">Less than 1% (not a radon affected area)</option>
+        <option value="3">1% to 3%</option>
+        <option value="5">3% to 5%</option>
+        <option value="10">5% to 10%</option>
+        <option value="30">10% to 30%</option>
+        <option value="100">More than 30%</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <details open>
+        <summary>Surveyor's notes (not for the report)</summary>
+        <div id="notes"></div>
+      </details>
+    </div>
+  </div>
+
+  <div class="card">
+    <details>
+      <summary>Settings (one time)</summary>
+      <p class="muted" style="margin-top:10px">This page shares the proxy address you saved on the EPC lookup page. Redeploy the updated <code>worker.js</code> so it can answer the desk research requests too.</p>
+      <label for="proxy">Proxy URL</label>
+      <input id="proxy" placeholder="https://gibsons-epc.&lt;you&gt;.workers.dev" />
+      <button class="ghost" id="saveCfg" style="margin-top:10px">Save</button>
+      <span id="cfgMsg" class="muted"></span>
+    </details>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const PROXY_KEY = 'gibsons_epc_proxy';
+function store(k, v){ try{ if(v===undefined) return localStorage.getItem(k)||''; localStorage.setItem(k, v); }catch(e){ return ''; } }
+$('proxy').value = store(PROXY_KEY);
+$('saveCfg').onclick = () => { store(PROXY_KEY, $('proxy').value.trim()); $('cfgMsg').textContent = ' Saved.'; };
+
+function setStatus(msg, kind){ const s=$('status'); if(!msg){ s.className=''; s.textContent=''; return; } s.className='status '+kind; s.textContent=msg; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+// Report text house style: no dashes or hyphens anywhere. Number ranges become "x to y".
+function clean(t){
+  return t.replace(/(\d)\s*[-–—]\s*(\d)/g, '$1 to $2')
+          .replace(/\s*[–—]\s*/g, ', ')
+          .replace(/-/g, ' ')
+          .replace(/[ \t]{2,}/g, ' ')
+          .trim();
+}
+function lc(s){ return String(s||'').toLowerCase(); }
+function title(s){ return lc(s).replace(/\b([a-z])/g, m => m.toUpperCase()); }
+function fmtDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  return isNaN(d) ? iso : d.toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+}
+function money(n){ return '£' + Number(n).toLocaleString('en-GB'); }
+
+// Same matching rule as the EPC lookup: a number matches as its own token (45 is not 145), a name as a substring.
+function matchesAddr(input, text){
+  const t = lc(input).trim(), full = lc(text);
+  if(!t) return true;
+  if(/^\d+[a-z]?$/.test(t)) return new RegExp('(^|\\D)'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(\\D|$)').test(full);
+  return full.includes(t);
+}
+
+async function call(proxy, params){
+  const u = proxy + (proxy.includes('?')?'&':'?') + new URLSearchParams(params).toString();
+  try{
+    const r = await fetch(u);
+    const j = await r.json().catch(() => null);
+    if(!r.ok) return { error: (j && j.error) || ('HTTP ' + r.status) };
+    return j || { error: 'empty response' };
+  }catch(e){ return { error: 'could not reach the proxy' }; }
+}
+
+let state = {};
+
+async function run(){
+  const proxy = store(PROXY_KEY).trim();
+  const nameNo = $('nameNo').value.trim();
+  const pc = $('postcode').value.trim();
+  $('results').style.display='none'; $('chooser').style.display='none';
+  if(!pc){ setStatus('Please enter a postcode.', 'warn'); return; }
+  if(!proxy){ setStatus('Set your proxy URL in Settings first (one time).', 'warn'); return; }
+  setStatus('Looking up the postcode…', 'ok');
+
+  const loc = await call(proxy, {src:'postcode', postcode:pc});
+  if(loc.error || loc.notFound || !loc.result){
+    setStatus(loc.notFound ? 'That postcode was not recognised. Check it and try again.' : 'Postcode lookup failed: ' + (loc.error||'unknown') + '. Has the updated worker been deployed?', 'err');
+    return;
+  }
+  const L = loc.result;
+  setStatus('Checking EPC, planning, flood, geology and Land Registry records…', 'ok');
+  const pt = {lat:L.latitude, lon:L.longitude};
+  const [epc, planning, listed, flood, geology, pp] = await Promise.all([
+    call(proxy, {postcode:pc}),
+    call(proxy, {src:'planning', ...pt}),
+    call(proxy, {src:'listed', ...pt}),
+    call(proxy, {src:'floodareas', ...pt}),
+    call(proxy, {src:'geology', ...pt}),
+    call(proxy, {src:'pricepaid', postcode:pc}),
+  ]);
+
+  // EPC: keep the latest certificate per address, then match.
+  const rows = (epc && (epc.rows || epc.results)) || [];
+  const latest = {};
+  (Array.isArray(rows)?rows:[]).forEach(r => {
+    const k = lc([r['address1'],r['address2'],r['address3']].filter(Boolean).join(', '));
+    if(!latest[k] || (r['lodgement-date']||'') > (latest[k]['lodgement-date']||'')) latest[k] = r;
+  });
+  const epcMatches = Object.values(latest).filter(r => matchesAddr(nameNo, [r['address1'],r['address2'],r['address3']].join(' ')));
+
+  // Land Registry: transactions for this address, newest first.
+  const bindings = (pp && pp.results && pp.results.bindings) || [];
+  const sales = bindings.map(b => ({
+    saon: b.saon ? b.saon.value : '', paon: b.paon ? b.paon.value : '', street: b.street ? b.street.value : '',
+    amount: +b.amount.value, date: b.date.value,
+    ptype: b.ptype.value.split('/').pop(), estate: b.estate.value.split('/').pop(), newbuild: b.newbuild.value === 'true'
+  }));
+  const ownSales = nameNo ? sales.filter(s => matchesAddr(nameNo, [s.saon, s.paon].join(' '))) : [];
+
+  state = { nameNo, pc, L, epc, epcMatches, epcPick: epcMatches[0] || null, planning, listed, flood, geology, sales, ownSales };
+
+  if(epcMatches.length > 1){
+    const sel = $('matches'); sel.innerHTML='';
+    epcMatches.forEach((r,i) => { const o=document.createElement('option'); o.value=i; o.textContent=[r['address1'],r['address2'],r['address3']].filter(Boolean).join(', ') + ' (' + (r['lodgement-date']||'') + ')'; sel.appendChild(o); });
+    $('chooser').style.display='block';
+  }
+  const failed = [['EPC',epc],['planning',planning],['listed buildings',listed],['flood',flood],['geology',geology],['Land Registry',pp]].filter(x => x[1] && x[1].error).map(x => x[0]);
+  setStatus(failed.length ? 'Done, but these sources did not respond: ' + failed.join(', ') + '. Check them by hand.' : '', failed.length ? 'warn' : 'ok');
+  render();
+}
+$('matches').onchange = e => { state.epcPick = state.epcMatches[e.target.value]; render(); };
+$('radon').onchange = () => { if(state.L) render(); };
+
+function analyse(){
+  const s = state, ents = (s.planning && s.planning.entities) || [];
+  const by = d => ents.filter(e => e.dataset === d);
+  const floodLevels = by('flood-risk-zone').map(e => +e['flood-risk-level']).filter(Boolean);
+  const geo = s.geology || {};
+  const first = c => (c && c.features && c.features[0] && c.features[0].properties) || null;
+  const bedrock = first(geo.bedrock), superficial = first(geo.superficial);
+  const isClay = p => p && /CLAY/i.test((p.lex_d||'') + ' ' + (p.rcs_d||'') + ' ' + (p.prev_name||''));
+  const listedNear = ((s.listed && s.listed.entities) || []);
+  const listedHere = by('listed-building-outline').length > 0 ||
+    (s.nameNo && listedNear.some(e => matchesAddr(s.nameNo, e.name)));
+  return {
+    conservation: by('conservation-area'), article4: by('article-4-direction-area'),
+    tpo: by('tree-preservation-zone'), greenBelt: by('green-belt'),
+    aonb: by('area-of-outstanding-natural-beauty'), monument: by('scheduled-monument'),
+    sssi: by('site-of-special-scientific-interest'),
+    floodZone: floodLevels.length ? Math.max(...floodLevels) : 1,
+    floodKnown: s.planning && !s.planning.error,
+    floodAreas: ((s.flood && s.flood.items) || []),
+    bedrock, superficial, clay: isClay(bedrock) || isClay(superficial),
+    geologyKnown: !!bedrock,
+    listedNear, listedHere
+  };
+}
+
+function ageBand(b){
+  b = String(b||'').replace(/^England and Wales:\s*/i, '').trim();
+  if(!b || /NO DATA|INVALID/i.test(b)) return '';
+  let m;
+  if((m = b.match(/^(\d{4})\s*-\s*(\d{4})$/))) return 'between ' + m[1] + ' and ' + m[2];
+  if((m = b.match(/before\s*(\d{4})/i))) return 'before ' + m[1];
+  if((m = b.match(/(\d{4})\s*onwards/i))) return 'in ' + m[1] + ' or later';
+  if(/^\d{4}$/.test(b)) return 'in about ' + b;
+  return '';
+}
+function epcDesc(v){ v = String(v||'').trim(); return (!v || /NO DATA|INVALID/i.test(v)) ? '' : lc(v).replace(/\btrvs\b/g,'TRVs'); }
+
+function buildSections(a){
+  const s = state, e = s.epcPick, L = s.L, out = [];
+
+  // Section C: About the property
+  let c = [];
+  if(e){
+    const form = lc(e['built-form']), type = lc(e['property-type']);
+    if(type) c.push(`The property is ${/^[aeiou]/.test(form||type)?'an':'a'} ${[form, type].filter(Boolean).join(' ')}.`);
+    const age = ageBand(e['construction-age-band']), area = e['total-floor-area'];
+    if(age && area) c.push(`The EPC suggests it was built ${age} and records a total internal floor area of about ${Math.round(area)} square metres.`);
+    else if(age) c.push(`The EPC suggests it was built ${age}.`);
+    else if(area) c.push(`The EPC records a total internal floor area of about ${Math.round(area)} square metres.`);
+    const walls = epcDesc(e['walls-description']), roof = epcDesc(e['roof-description']), heat = epcDesc(e['mainheat-description']);
+    // EPC values contain commas, so the list is joined with semicolons.
+    const parts = [walls && `the walls as ${walls}`, roof && `the roof as ${roof}`, heat && `the main heating as ${heat}`].filter(Boolean);
+    if(parts.length) c.push(`It records ${parts.length>1 ? parts.slice(0,-1).join('; ') + '; and ' + parts.slice(-1) : parts[0]}.`);
+    c.push(`These details come from the EPC rather than our own measurements, and we comment on construction from what we saw during the inspection.`);
+  } else {
+    c.push(`We couldn't find an EPC for this property, so construction details are based on our inspection only.`);
+  }
+  out.push({ id:'about', title:'Section C: About the property', hint:'Property type, age, floor area and construction (from the EPC)', text:c.join(' ') });
+
+  // Energy efficiency
+  let en;
+  if(e){
+    const cur = e['current-energy-rating'], curN = e['current-energy-efficiency'], pot = e['potential-energy-rating'], potN = e['potential-energy-efficiency'];
+    const lodged = e['lodgement-date'] || e['inspection-date'];
+    en = `The EPC dated ${fmtDate(lodged)} gives the property a current energy rating of ${cur} (${curN}), with the potential to reach ${pot} (${potN}) if the recommended improvements were carried out.`;
+    const ageYears = (Date.now() - new Date(lodged)) / 31557600000;
+    if(ageYears > 10) en += ` That certificate is more than ten years old, so it has expired. A new EPC will be needed if the property is sold or let again.`;
+    else en += ` An EPC stays valid for ten years.`;
+    if(e['mains-gas-flag'] === 'N') en += ` The EPC indicates there is no mains gas connection.`;
+  } else {
+    en = `We couldn't find an EPC on the government register for this property. Your legal adviser should ask the seller for one, as a valid EPC is normally needed before a property is sold or let.`;
+  }
+  out.push({ id:'energy', title:'Section C: Energy efficiency', hint:'EPC rating and validity', text:en });
+
+  // Location and local environment
+  let loc = [];
+  const place = L.parish && L.parish !== L.admin_district ? L.parish : L.admin_district;
+  loc.push(`The property is in ${place}, within the ${L.admin_district} local authority area${L.admin_county ? ' in ' + L.admin_county : ''}.`);
+  if(a.floodKnown){
+    if(a.floodZone >= 3) loc.push(`The Environment Agency's flood map places the property in Flood Zone 3. That's the highest category, meaning a 1 in 100 or greater chance of flooding from rivers each year, or 1 in 200 from the sea, before any flood defences are taken into account.`);
+    else if(a.floodZone === 2) loc.push(`The Environment Agency's flood map places the property in Flood Zone 2. That means a medium probability of flooding from rivers or the sea, before any flood defences are taken into account.`);
+    else loc.push(`The Environment Agency's flood map places the property in Flood Zone 1, the lowest probability of flooding from rivers or the sea. That map doesn't cover surface water flooding, which can happen anywhere after heavy rain.`);
+  }
+  if(a.geologyKnown){
+    const rock = p => title(p.lex_d) + (p.rcs_d ? ' (' + lc(p.rcs_d) + ')' : '');
+    loc.push(`Geological mapping from the British Geological Survey shows the area sits on ${a.superficial ? rock(a.superficial) + ' over ' : ''}${rock(a.bedrock)}. This is broad scale mapping, so it gives a general picture rather than the conditions under this particular building.`);
+  }
+  const rv = $('radon').value;
+  if(rv === '1') loc.push(`The property is not in a radon affected area according to the UK Health Security Agency's radon map.`);
+  else if(rv){
+    const band = $('radon').selectedOptions[0].textContent;
+    loc.push(`The UK Health Security Agency's radon map shows that ${lc(band)} of homes in this area are estimated to be above the radon action level, so the property is in a radon affected area. Radon is a naturally occurring radioactive gas.`);
+  }
+  out.push({ id:'location', title:'Section C: Location and local environment', hint:'Council, flood zone, geology, radon', text:loc.join(' ') });
+
+  // Section H: Issues for your legal advisers
+  let h = [];
+  if(s.ownSales.length){
+    const last = s.ownSales[0];
+    h.push(`HM Land Registry records show the property was last sold in ${new Date(last.date).toLocaleDateString('en-GB',{month:'long',year:'numeric'})} as a ${last.estate}${last.newbuild ? ' new build' : ''}. Your legal adviser should confirm the tenure${last.estate==='leasehold' ? ', the length of the lease, the ground rent and service charges, and who is responsible for repairs to the structure' : ''}.`);
+  }
+  if(a.conservation.length){
+    const n = a.conservation[0].name;
+    h.push(`The property appears to be within ${n ? 'the ' + n + ' Conservation Area' : 'a conservation area'}. Extra planning controls apply in conservation areas, for example to demolition, some extensions and alterations, and works to trees. Your legal adviser should confirm this and check that any past alterations had the right consents.`);
+  }
+  if(a.listedHere){
+    const l = a.listedNear.find(x => matchesAddr(s.nameNo, x.name)) || a.listedNear[0];
+    h.push(`Historic England's list suggests the property may be a listed building${l && l['listed-building-grade'] ? ' (Grade ' + l['listed-building-grade'] + ')' : ''}. Listed building consent is needed for most alterations, inside and out, and carrying out work without it is a criminal offence. Your legal adviser should confirm the listing and check that consent was obtained for any past alterations.`);
+  } else if(a.listedNear.length){
+    h.push(`There ${a.listedNear.length>1 ? 'are listed buildings' : 'is a listed building'} close to the property. Any future alterations that could affect ${a.listedNear.length>1 ? 'their' : 'its'} setting may need careful handling with the council.`);
+  }
+  a.article4.forEach(x => h.push(`An Article 4 Direction applies to this area${x.name ? ' (' + x.name + ')' : ''}. This removes some permitted development rights, which are the rights to carry out certain works without applying for planning permission. Your legal adviser should check how it affects the property.`));
+  if(a.tpo.length) h.push(`The property is within an area covered by a tree preservation order. Protected trees can't be cut back or removed without the council's consent. Your legal adviser should check which trees are covered.`);
+  if(a.greenBelt.length) h.push(`The property is in the Green Belt, where planning controls on new building and extensions are stricter.`);
+  if(a.aonb.length) h.push(`The property is within ${a.aonb[0].name ? 'the ' + a.aonb[0].name : 'a'} National Landscape (formerly an Area of Outstanding Natural Beauty), where planning controls are stricter.`);
+  if(a.monument.length) h.push(`The site appears to include or adjoin a scheduled monument${a.monument[0].name ? ' (' + a.monument[0].name + ')' : ''}. Your legal adviser should check for any restrictions.`);
+  if(a.sssi.length) h.push(`The property is within or next to a Site of Special Scientific Interest${a.sssi[0].name ? ' (' + a.sssi[0].name + ')' : ''}, which can restrict some works and activities.`);
+  if(!a.conservation.length && !a.listedHere){
+    h.push(`Our desk based checks found no conservation area or listing recorded for this address in the national planning data. Not every council has supplied its records yet, so your legal adviser should confirm this through the local authority search.`);
+  }
+  out.push({ id:'legal', title:'Section H: Issues for your legal advisers', hint:'Tenure, designations and consents', text:h.join('\n\n') });
+
+  // Section I: Risks
+  let r = [];
+  if(a.floodKnown && a.floodZone >= 2){
+    r.push(`Flood risk. The property is in Flood Zone ${a.floodZone}. You should check that buildings insurance is available on normal terms before you commit to the purchase, and ask the seller whether the property has ever flooded. The Environment Agency's long term flood risk service takes flood defences into account and also shows the risk from surface water.`);
+  }
+  if(a.clay){
+    r.push(`Ground movement. The property stands in an area of clay soils. Clay shrinks in dry weather and swells when wet, and trees and large shrubs close to a building make this worse because their roots draw moisture out of the ground. This can cause foundation movement and cracking. We comment on any signs of movement we saw elsewhere in this report.`);
+  }
+  if(rv && rv !== '1') r.push(`Radon. The property is in a radon affected area. We recommend a radon test; if the result is high, the usual fix is a fan driven sump or improved underfloor ventilation, which is not normally expensive.`);
+  if(!r.length) r.push(`Our desk based checks did not identify any particular environmental risks for this location. Risks we found during the inspection are covered below.`);
+  out.push({ id:'risks', title:'Section I: Risks', hint:'Environmental risks found by the desk research', text:r.join('\n\n') });
+
+  out.forEach(o => o.text = clean(o.text));
+  return out;
+}
+
+function render(){
+  const s = state, a = analyse(), L = s.L, e = s.epcPick;
+  const addr = e ? [e['address1'],e['address2'],e['address3']].filter(Boolean).join(', ') : (s.nameNo ? s.nameNo + ', ' : '') + (s.ownSales[0] ? title(s.ownSales[0].street) : '');
+  $('addrLine').textContent = (addr ? addr + ', ' : '') + L.postcode;
+  $('areaLine').textContent = [L.admin_ward, L.admin_district, L.admin_county].filter(Boolean).join(' · ');
+
+  const flags = [];
+  if(a.floodKnown) flags.push([a.floodZone>=3?'red':a.floodZone===2?'amber':'green', 'Flood Zone ' + a.floodZone]);
+  if(a.clay) flags.push(['amber', 'Clay soils']);
+  if(a.conservation.length) flags.push(['amber', 'Conservation area']);
+  if(a.listedHere) flags.push(['red', 'Possibly listed']); else if(a.listedNear.length) flags.push(['', 'Listed buildings nearby']);
+  if(a.article4.length) flags.push(['amber', 'Article 4']);
+  if(a.tpo.length) flags.push(['amber', 'TPO area']);
+  if(a.greenBelt.length) flags.push(['', 'Green Belt']);
+  if(s.ownSales[0] && s.ownSales[0].estate === 'leasehold') flags.push(['amber', 'Leasehold']);
+  if(!e) flags.push(['amber', 'No EPC found']);
+  $('flags').innerHTML = flags.map(f => `<span class="flag ${f[0]}">${esc(f[1])}</span>`).join('');
+
+  const secs = buildSections(a);
+  $('sections').innerHTML = secs.map(sec => `
+    <div class="card section" data-goreport-section="${esc(sec.title)}">
+      <div class="head">
+        <div><h2>${esc(sec.title)}</h2><div class="muted">${esc(sec.hint)}</div></div>
+        <button class="ghost" data-copy="${sec.id}">Copy</button>
+      </div>
+      <div class="text" id="t_${sec.id}" contenteditable="true">${esc(sec.text)}</div>
+    </div>`).join('');
+  document.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => copy($('t_' + b.dataset.copy).innerText, b));
+  $('copyAll').onclick = () => copy(secs.map(sec => sec.title.toUpperCase() + '\n' + $('t_' + sec.id).innerText).join('\n\n'), $('copyAll'));
+
+  renderNotes(a);
+  $('results').style.display = 'block';
+}
+
+function renderNotes(a){
+  const s = state, L = s.L, e = s.epcPick;
+  const ll = L.latitude + ',' + L.longitude;
+  const rows = [];
+  if(e){
+    rows.push(['EPC', `${e['current-energy-rating']} (${e['current-energy-efficiency']}), lodged ${fmtDate(e['lodgement-date'])}`]);
+    ['construction-age-band','walls-description','roof-description','floor-description','windows-description','mainheat-description','hotwater-description','main-fuel','total-floor-area','number-habitable-rooms'].forEach(k => { if(e[k]) rows.push([k.replace(/-/g,' '), e[k]]); });
+  }
+  if(a.bedrock) rows.push(['Bedrock (BGS 1:625k)', a.bedrock.lex_rcs_d || a.bedrock.lex_d]);
+  rows.push(['Superficial (BGS 1:625k)', a.superficial ? (a.superficial.lex_rcs_d || a.superficial.lex_d) : 'None recorded']);
+  a.floodAreas.slice(0,5).forEach(f => rows.push(['EA flood warning area (within 1 km)', f.label]));
+  a.conservation.forEach(c => rows.push(['Conservation area', c.name + (c['designation-date'] ? ', designated ' + fmtDate(c['designation-date']) : '')]));
+  a.listedNear.forEach(l => rows.push(['Listed within about 40 m', `${l.name} (Grade ${l['listed-building-grade']||'?'})`]));
+  a.article4.forEach(x => rows.push(['Article 4', x.name + (x.description ? ': ' + x.description : '')]));
+
+  const sales = (s.ownSales.length ? s.ownSales : []).map(x => `<tr><td>${esc(fmtDate(x.date))}</td><td>${money(x.amount)}</td><td>${esc(x.ptype)}, ${esc(x.estate)}${x.newbuild?', new build':''}</td></tr>`).join('');
+  const pcSales = s.sales.slice(0,12).map(x => `<tr><td>${esc(fmtDate(x.date))}</td><td>${esc(title([x.saon,x.paon,x.street].filter(Boolean).join(' ')))}</td><td>${money(x.amount)} · ${esc(x.ptype)}, ${esc(x.estate)}</td></tr>`).join('');
+
+  const g = q => 'https://www.google.com/search?q=' + encodeURIComponent(q);
+  const links = [
+    [e && e['lmk-key'] ? 'https://find-energy-certificate.service.gov.uk/energy-certificate/' + encodeURIComponent(e['lmk-key']) : 'https://find-energy-certificate.service.gov.uk/find-a-certificate/search-by-postcode?postcode=' + encodeURIComponent(L.postcode), 'EPC certificate'],
+    ['https://check-long-term-flood-risk.service.gov.uk/', 'EA long term flood risk'],
+    ['https://www.ukradon.org/information/ukmaps', 'UKradon map'],
+    ['https://www.bgs.ac.uk/map-viewers/bgs-geology-viewer/', 'BGS Geology Viewer'],
+    [g(L.admin_district + ' council planning application search'), 'Planning history (' + L.admin_district + ')'],
+    ['https://historicengland.org.uk/listing/the-list/', 'Historic England list'],
+    ['https://maps.nls.uk/geo/explore/#zoom=17&lat=' + L.latitude + '&lon=' + L.longitude, 'Historic OS maps'],
+    ['https://www.gov.uk/council-tax-bands', 'Council tax band'],
+    ['https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + ll, 'Street View'],
+  ];
+
+  $('notes').innerHTML =
+    `<h3>Raw data</h3><table>${rows.map(r => `<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</table>` +
+    `<h3>Sales of this property (HM Land Registry)</h3>` + (sales ? `<table>${sales}</table>` : `<p class="muted">No sales matched this address${s.nameNo ? '' : ' (enter a number or name to match)'}.</p>`) +
+    `<h3>Recent sales in ${esc(L.postcode)}</h3>` + (pcSales ? `<table>${pcSales}</table>` : `<p class="muted">No recorded sales in this postcode.</p>`) +
+    `<h3>Check by hand</h3><div class="links">${links.map(l => `<a href="${esc(l[0])}" target="_blank" rel="noopener">${esc(l[1])} ↗</a>`).join('')}</div>` +
+    `<p class="muted">Designation data comes from planning.data.gov.uk, which is still being filled in by councils. A blank result means nothing was recorded, not that nothing exists.</p>`;
+}
+
+async function copy(text, btn){
+  let ok = false;
+  try{ await navigator.clipboard.writeText(text); ok = true; }catch(e){
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ ok = document.execCommand('copy'); }catch(_){} ta.remove();
+  }
+  const old = btn.textContent; btn.textContent = ok ? 'Copied ✓' : 'Copy failed'; setTimeout(() => btn.textContent = old, 1500);
+}
+
+$('go').onclick = run;
+['postcode','nameNo'].forEach(id => $(id).addEventListener('keydown', e => { if(e.key === 'Enter') run(); }));
+</script>
+</body>
+</html>
