@@ -1,0 +1,10 @@
+:root{
+  --vm-orange:#FF6600; --vm-orange-d:#d95700; --vm-orange-soft:#fff1e6;
+  --vm-ink:#333333; --vm-muted:#6b6b6b; --vm-line:#e3e3e3; --vm-bg:#f6f6f6; --vm-card:#ffffff;
+  --vm-row-alt:#F9F9F9; --vm-flag-bg:#FFFACD; --vm-flag-ink:#CC0000;
+  --vm-green:#1e8e3e; --vm-amber:#c98a00; --vm-red:#cc0000;
+  --vm-radius:12px; --vm-gap:16px;
+  --vm-font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--vm-font);color:var(--vm-ink);background:var(--vm-bg);line-height:1.45}
