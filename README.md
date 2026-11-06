@@ -39,3 +39,6 @@ python3 -m http.server 8000
   to `holly@gibsons.ltd.uk`. The first submission triggers a one-time email to
   confirm the address. Swap for any other form handler if preferred.
 - **Social links** — update the Facebook URL to the exact page link.
+
+## Tools
+- [Gibsons Comparable Matrix](valuation-matrix/): residential comparable evidence matrix for Gibsons Surveyors (Range Low and Range High, Excel export, Red Book commentary). See [valuation-matrix/README.md](valuation-matrix/README.md).

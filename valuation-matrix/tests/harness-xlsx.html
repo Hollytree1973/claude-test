@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel export harness</title>
+<link rel="stylesheet" href="../css/base.css">
+<style>
+  body { font-family: system-ui, sans-serif; margin: 16px; color: #333; background: #fff; }
+  button { background: #FF6600; color: #fff; border: 0; padding: 10px 16px; font-weight: 600; border-radius: 4px; cursor: pointer; }
+  #status { margin-top: 12px; }
+</style>
+</head>
+<body>
+<h1>Excel export harness</h1>
+<p>Loads a sample buy to let case into the store, then exports it. Used by tests/xlsx.test.mjs, which serves the pinned library bytes in place of the CDN.</p>
+<button id="go" type="button">Export Excel workbook</button>
+<div id="status" role="status"></div>
+<script type="module">
+  import { store } from '../js/store.js';
+  import { createState, createComparable } from '../js/model.js';
+  import { exportXlsx } from '../js/export-xlsx.js';
+
+  const s = createState();
+  Object.assign(s, { caseRef: 'GS/2026:114', valuationDate: '2026-11-06', instructionType: 'btl', matrixType: 'btl' });
+  Object.assign(s.subject, { address: '14 Rowan Way, Chelmsford', postcode: 'CM1 2AB', bedrooms: 3, floorAreaSqFt: 1000, floorAreaSqM: 92.9 });
+  s.hpi = { regionSlug: 'chelmsford', regionLabel: 'Chelmsford', series: [], valuationIndex: 150, source: 'HM Land Registry UK HPI' };
+  s.sales = [
+    createComparable({ address: '2 Rowan Way, Chelmsford', floorAreaSqFt: 850, price: 400000, saleDate: '2026-02-10', distanceMiles: 0.2, hpiAtSale: 140,
+      adjustments: { condition: { mode: 'pct', value: 5, note: 'Dated kitchen' } } }),
+    createComparable({ address: '9 Birch Close', floorAreaSqFt: 1150, price: 380000, saleDate: '2026-09-01', saleKind: 'auction', distanceMiles: 0.7 }),
+    createComparable({ address: '1 Oak Road', price: 360000, saleDate: '2025-06-01' }),
+  ];
+  s.rentals = [
+    createComparable({ address: '3 Ash Grove', floorAreaSqFt: 900, price: 1600, saleDate: '2026-08-01' }),
+    createComparable({ address: '7 Ash Grove', floorAreaSqFt: 1000, price: 1750, saleDate: '2026-10-01' }),
+  ];
+  store.replace(s);
+
+  const status = document.getElementById('status');
+  const local = new URLSearchParams(location.search).has('local');
+  document.getElementById('go').addEventListener('click', async () => {
+    status.textContent = 'Building workbook...';
+    try {
+      const name = await exportXlsx(store.get(), store.evaluation(), local ? { libUrl: './vendor/xlsx-js-style-1.2.0.bundle.js' } : {});
+      status.textContent = 'Downloaded ' + name;
+      status.dataset.done = name;
+    } catch (e) {
+      status.textContent = e.message;
+      status.dataset.error = e.message;
+    }
+  });
+  window.__ready = true;
+</script>
+</body>
+</html>

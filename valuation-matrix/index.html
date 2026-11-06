@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Gibsons Surveyors comparable evidence matrix for residential valuation. Works out Range Low and Range High from adjusted comparables.">
+  <meta name="theme-color" content="#FF6600">
+  <title>Gibsons Comparable Matrix</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF6600'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/ui-subject.css">
+  <link rel="stylesheet" href="css/ui-comparables.css">
+  <link rel="stylesheet" href="css/ui-hpi.css">
+  <link rel="stylesheet" href="css/ui-adjustments.css">
+  <link rel="stylesheet" href="css/ui-results.css">
+</head>
+<body>
+  <a class="vm-skip" href="#vm-main">Skip to the form</a>
+  <header class="vm-header">
+    <div class="vm-header__inner">
+      <div class="vm-brand">
+        <span class="vm-brand__mark" aria-hidden="true">G</span>
+        <span class="vm-brand__text">
+          <span class="vm-brand__name">Gibsons Surveyors</span>
+          <span class="vm-brand__tool">Comparable Matrix</span>
+        </span>
+      </div>
+      <p class="vm-header__range" id="vm-range-strip" aria-live="polite"></p>
+    </div>
+  </header>
+
+  <nav class="vm-tabs" aria-label="Steps">
+    <div class="vm-tabs__inner" role="tablist" aria-label="Steps">
+      <button type="button" role="tab" class="vm-tab" id="vm-tab-subject" data-tab="subject" aria-controls="vm-panel-subject" aria-selected="true"><span class="vm-tab__num">1</span><span class="vm-tab__label">Case and subject</span></button>
+      <button type="button" role="tab" class="vm-tab" id="vm-tab-comparables" data-tab="comparables" aria-controls="vm-panel-comparables" aria-selected="false" tabindex="-1"><span class="vm-tab__num">2</span><span class="vm-tab__label">Comparables</span></button>
+      <button type="button" role="tab" class="vm-tab" id="vm-tab-hpi" data-tab="hpi" aria-controls="vm-panel-hpi" aria-selected="false" tabindex="-1"><span class="vm-tab__num">3</span><span class="vm-tab__label">HPI</span></button>
+      <button type="button" role="tab" class="vm-tab" id="vm-tab-adjustments" data-tab="adjustments" aria-controls="vm-panel-adjustments" aria-selected="false" tabindex="-1"><span class="vm-tab__num">4</span><span class="vm-tab__label">Adjustments</span></button>
+      <button type="button" role="tab" class="vm-tab" id="vm-tab-results" data-tab="results" aria-controls="vm-panel-results" aria-selected="false" tabindex="-1"><span class="vm-tab__num">5</span><span class="vm-tab__label">Results</span></button>
+    </div>
+  </nav>
+
+  <main class="vm-main" id="vm-main">
+    <section class="vm-panel" id="vm-panel-subject" role="tabpanel" aria-labelledby="vm-tab-subject" data-panel="subject">
+      <div class="vm-panel__head">
+        <h1 class="vm-panel__title">1 Case and subject property</h1>
+        <p class="vm-panel__lead">Enter the case details and the property you are valuing. Everything saves on this device as you type.</p>
+      </div>
+      <div class="vm-intro vm-card" id="vm-intro">
+        <p>New to the tool? Load the worked example to see how it fits together, or start typing below.</p>
+        <button type="button" class="vm-btn vm-btn--secondary" data-app-action="example">Load example case</button>
+      </div>
+      <div id="vm-subject" class="vm-mount"></div>
+    </section>
+
+    <section class="vm-panel" id="vm-panel-comparables" role="tabpanel" aria-labelledby="vm-tab-comparables" data-panel="comparables" hidden>
+      <div class="vm-panel__head">
+        <h1 class="vm-panel__title">2 Comparables</h1>
+        <p class="vm-panel__lead">Add the sales or lettings you are relying on. You can paste text from Rightmove or a Land Registry download.</p>
+      </div>
+      <div id="vm-comparables" class="vm-mount"></div>
+    </section>
+
+    <section class="vm-panel" id="vm-panel-hpi" role="tabpanel" aria-labelledby="vm-tab-hpi" data-panel="hpi" hidden>
+      <div class="vm-panel__head">
+        <h1 class="vm-panel__title">3 House Price Index</h1>
+        <p class="vm-panel__lead">Bring older sales up to the valuation date using the UK House Price Index for the local area.</p>
+      </div>
+      <div id="vm-hpi" class="vm-mount"></div>
+    </section>
+
+    <section class="vm-panel" id="vm-panel-adjustments" role="tabpanel" aria-labelledby="vm-tab-adjustments" data-panel="adjustments" hidden>
+      <div class="vm-panel__head">
+        <h1 class="vm-panel__title">4 Adjustments</h1>
+        <p class="vm-panel__lead">Adjust each comparable for the ways it differs from the subject property, with a short reason for each.</p>
+      </div>
+      <div id="vm-adjustments" class="vm-mount"></div>
+    </section>
+
+    <section class="vm-panel" id="vm-panel-results" role="tabpanel" aria-labelledby="vm-tab-results" data-panel="results" hidden>
+      <div class="vm-panel__head">
+        <h1 class="vm-panel__title">5 Results</h1>
+        <p class="vm-panel__lead">The range the adjusted evidence supports, the points to check, and the exports for your report.</p>
+      </div>
+      <div id="vm-results" class="vm-mount"></div>
+    </section>
+
+    <div class="vm-stepnav" id="vm-stepnav">
+      <button type="button" class="vm-btn vm-btn--ghost" data-step="prev">Back</button>
+      <button type="button" class="vm-btn vm-btn--primary" data-step="next">Next</button>
+    </div>
+  </main>
+
+  <footer class="vm-footer">
+    <p>The tool shows a Range Low and Range High only. The valuation opinion is the RICS Registered Valuer's own. Case data stays in this browser unless you save or export it.</p>
+  </footer>
+
+  <noscript><p class="vm-noscript">This tool needs JavaScript switched on.</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

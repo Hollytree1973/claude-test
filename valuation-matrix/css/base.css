@@ -8,3 +8,98 @@
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:var(--vm-font);color:var(--vm-ink);background:var(--vm-bg);line-height:1.45}
+
+/* ---------- integrator: page layout, header, tabs, cards, controls ---------- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{max-width:100%;overflow-x:hidden}
+body{font-size:16px;min-height:100vh;display:flex;flex-direction:column}
+img,svg{max-width:100%}
+[hidden]{display:none !important}
+h1,h2,h3,h4{line-height:1.25;color:var(--vm-ink)}
+a{color:var(--vm-orange-d)}
+
+.vm-skip{position:absolute;left:8px;top:-60px;z-index:100;background:#fff;color:var(--vm-ink);padding:10px 14px;border-radius:8px;font-weight:600}
+.vm-skip:focus{top:8px}
+
+.vm-header{background:var(--vm-orange);color:#fff;padding-top:env(safe-area-inset-top)}
+.vm-header__inner{max-width:1280px;margin:0 auto;padding:12px var(--vm-gap);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.vm-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.vm-brand__mark{flex:none;width:40px;height:40px;border-radius:10px;background:#fff;color:var(--vm-orange);display:grid;place-items:center;font-weight:800;font-size:22px}
+.vm-brand__text{display:flex;flex-direction:column;min-width:0}
+.vm-brand__name{font-weight:700;font-size:18px;letter-spacing:.01em}
+.vm-brand__tool{font-size:14px;opacity:.95}
+.vm-header__range{margin:0;font-size:15px;font-weight:600;background:rgba(255,255,255,.18);padding:6px 12px;border-radius:999px;max-width:100%;overflow-wrap:anywhere}
+.vm-header__range.is-empty{font-weight:500;opacity:.9}
+
+.vm-tabs{background:#fff;border-bottom:1px solid var(--vm-line);position:sticky;top:0;z-index:20;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.vm-tabs__inner{max-width:1280px;margin:0 auto;padding:0 var(--vm-gap);display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.vm-tabs__inner::-webkit-scrollbar{display:none}
+.vm-tab{flex:none;appearance:none;border:0;background:none;font:inherit;color:var(--vm-muted);padding:12px 12px 10px;min-height:48px;display:flex;align-items:center;gap:8px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.vm-tab:hover{color:var(--vm-ink)}
+.vm-tab__num{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--vm-line);color:var(--vm-ink)}
+.vm-tab[aria-selected="true"]{color:var(--vm-ink);font-weight:600;border-bottom-color:var(--vm-orange)}
+.vm-tab[aria-selected="true"] .vm-tab__num{background:var(--vm-orange);color:#fff}
+
+.vm-main{flex:1;width:100%;max-width:1280px;margin:0 auto;padding:var(--vm-gap);min-width:0}
+.vm-panel{min-width:0}
+.vm-panel__head{margin:4px 0 16px}
+.vm-panel__title{font-size:22px;margin:0 0 4px}
+.vm-panel__lead{margin:0;color:var(--vm-muted);max-width:70ch}
+.vm-mount{min-width:0;max-width:100%}
+
+.vm-card{background:var(--vm-card);border:1px solid var(--vm-line);border-radius:var(--vm-radius);padding:var(--vm-gap);margin-bottom:var(--vm-gap)}
+.vm-intro{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-left:4px solid var(--vm-orange);background:var(--vm-orange-soft)}
+.vm-intro p{margin:0;flex:1 1 260px}
+
+.vm-btn{appearance:none;font:inherit;font-size:16px;font-weight:600;min-height:44px;padding:10px 18px;border-radius:10px;border:1px solid var(--vm-line);background:#fff;color:var(--vm-ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.vm-btn:hover{border-color:#c9c9c9}
+.vm-btn--primary{background:var(--vm-orange);border-color:var(--vm-orange);color:#fff}
+.vm-btn--primary:hover{background:var(--vm-orange-d);border-color:var(--vm-orange-d)}
+.vm-btn--secondary{border-color:var(--vm-orange);color:var(--vm-orange-d)}
+.vm-btn--ghost{background:transparent}
+.vm-btn:disabled{opacity:.55;cursor:not-allowed}
+
+.vm-main input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),.vm-main select,.vm-main textarea{font:inherit;font-size:16px;color:var(--vm-ink);max-width:100%}
+
+:where(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid var(--vm-orange);outline-offset:2px;border-radius:6px}
+
+.vm-stepnav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-top:16px;border-top:1px solid var(--vm-line)}
+.vm-stepnav [data-step="next"]{margin-left:auto}
+
+.vm-error{background:var(--vm-flag-bg);color:var(--vm-flag-ink);border:1px solid #f0d77a;border-radius:var(--vm-radius);padding:var(--vm-gap)}
+.vm-error p{margin:6px 0 0;color:var(--vm-ink)}
+
+.vm-footer{color:var(--vm-muted);font-size:14px;border-top:1px solid var(--vm-line);background:#fff}
+.vm-footer p{max-width:1280px;margin:0 auto;padding:16px var(--vm-gap) calc(16px + env(safe-area-inset-bottom))}
+.vm-noscript{padding:var(--vm-gap);background:var(--vm-flag-bg);color:var(--vm-flag-ink)}
+
+/* Wide tables scroll inside their own box, never the page */
+.vm-scroll,.vm-table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse}
+
+@media (max-width:640px){
+  .vm-header__inner{padding:10px var(--vm-gap)}
+  .vm-brand__mark{width:34px;height:34px;font-size:19px}
+  .vm-brand__name{font-size:16px}
+  .vm-header__range{font-size:14px;width:100%;text-align:center}
+  .vm-tab{padding:10px 8px 8px}
+  .vm-panel__title{font-size:20px}
+}
+@media (min-width:1024px){
+  .vm-main{padding:24px var(--vm-gap)}
+}
+@media print{
+  .vm-tabs,.vm-stepnav,.vm-footer,.vm-skip,.vm-intro{display:none !important}
+  .vm-header{background:#fff;color:var(--vm-ink);border-bottom:3px solid var(--vm-orange)}
+  body{background:#fff}
+}
+/* On narrow phones show numbers for the other steps and the full name only for the current one,
+   so all five steps fit without sideways scrolling. */
+@media (max-width:480px){
+  .vm-tabs__inner{gap:2px;justify-content:space-between}
+  .vm-tab{padding:10px 6px 8px}
+  .vm-tab:not([aria-selected="true"]) .vm-tab__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .vm-tab__num{width:28px;height:28px}
+}
+/* The step heading already names these panels; keep the module's own title for screen readers only. */
+#vm-hpi .vm-hpi-title,#vm-adjustments .vm-adj__title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

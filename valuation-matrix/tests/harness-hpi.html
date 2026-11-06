@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HPI panel harness</title>
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/ui-hpi.css">
+<style>body{padding:16px;max-width:1000px;margin:0 auto}#vm-hpi{background:#fff;padding:16px;border-radius:12px}</style>
+</head>
+<body>
+<section id="vm-hpi"></section>
+<script type="module">
+  try { localStorage.removeItem('gibsons-vm-case'); } catch {}
+  const { store } = await import('../js/store.js');
+  const { createState, createComparable } = await import('../js/model.js');
+  const { mount } = await import('../js/ui-hpi.js');
+  const params = new URLSearchParams(location.search);
+  const s = createState();
+  s.valuationDate = '2026-11-06';
+  s.subject.postcode = params.get('postcode') ?? 'CM2 9AB';
+  if (params.get('empty') !== '1') {
+    s.sales = [
+      createComparable({ id: 'a', address: '1 Test Road', saleDate: '2025-03-14', price: 400000 }),
+      createComparable({ id: 'b', address: '2 Test Road', saleDate: '2026-09-01', price: 410000 }),
+      createComparable({ id: 'c', address: '3 Test Road', saleDate: '2024-01-20', price: 380000, hpiAtSale: 90 }),
+    ];
+  }
+  store.replace(s);
+  mount(document.getElementById('vm-hpi'), store);
+  window.__store = store;
+  window.__ready = true;
+</script>
+</body>
+</html>
